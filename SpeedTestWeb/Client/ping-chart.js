@@ -22,7 +22,7 @@ SpeedTestClient.drawPingChart = (testResults) => {
         label: {
           text: 'ms',
           position: 'outer-middle'
-        },
+        }
       }
     }
   });

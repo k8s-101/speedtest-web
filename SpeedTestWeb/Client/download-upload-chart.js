@@ -23,7 +23,7 @@ SpeedTestClient.drawDownloadUploadChart = (testResults) => {
         label: {
           text: 'Mbps',
           position: 'outer-middle'
-        },
+        }
       }
     }
   });
