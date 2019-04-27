@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Speed Tests</title>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.0/c3.min.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.0/c3.min.js"></script>
+
+        <script src="api-client.js"></script>
+        <script src="test-results.js"></script>
+        <script src="download-upload-chart.js"></script>
+        <script src="ping-chart.js"></script>
+    </head>
+    <body>
+        <main class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card fluid">
+                        <h1><a href="https://github.com/k8s-101/speedtest-web">Speed Test Web</a></h1>
+                    </div>
+                    <div class="card fluid padded-chart">
+                        <h2>Download vs. Upload</h2>
+                        <br />
+                        <div id="download-upload-chart"></div>
+                    </div>
+                    <div class="card fluid padded-chart">
+                        <h2>Server Ping</h2>
+                        <br />
+                        <div id="ping-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="app.js"></script>
+    </body>
+</html>

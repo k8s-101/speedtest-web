@@ -1,0 +1,33 @@
+h1 {
+    margin-left: 28px;
+}
+
+main {
+    background: #EEE;
+    height: 100vh;
+}
+
+#download-upload-chart  {
+    height: 45vh;
+}
+
+#ping-chart  {
+    height: 25vh;
+}
+
+.padded-chart {
+    padding: 16px 48px 28px 28px;
+}
+
+table.c3-tooltip {
+    overflow: hidden;
+    padding: 0px;
+}
+
+.c3-tooltip tbody {
+    border: 0px;
+}
+
+.c3-tooltip tr {
+    border: 0px;
+}
