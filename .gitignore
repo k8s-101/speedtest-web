@@ -1,0 +1,10 @@
+# Build results
+**/bin
+**/obj
+
+# Local configuration (possibly containing secrets)
+*.Development.json
+
+# User-specific files
+*.sln
+**/.vscode
