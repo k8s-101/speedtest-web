@@ -1,8 +1,6 @@
 var SpeedTestClient = SpeedTestClient || {};
 
 SpeedTestClient.getSpeedTests = () => {
-  const speedTestApiBase = 'http://localhost:5000';
-
   const twoDaysAgo = () => {
     const now = new Date();
     now.setDate(now.getDate() - 2);
@@ -28,5 +26,5 @@ SpeedTestClient.getSpeedTests = () => {
     return apiUrl;
   }
 
-  return d3.json(speedTestApiUrl(speedTestApiBase));
+  return d3.json(speedTestApiUrl(Configuration.speedTestApiBase));
 };
