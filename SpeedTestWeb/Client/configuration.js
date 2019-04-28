@@ -1,20 +1,19 @@
 const Configuration = (() => {
   const prodConfiguration = {
-    speedTestApiBase: '<fill-in-prod-url-here>'
+    speedTestApiBase: 'http://137.117.213.59',
   };
 
   const devConfiguration = {
-    speedTestApiBase: 'http://localhost:5000'
+    speedTestApiBase: 'http://localhost:5000',
   };
 
   const isDevelopment = () =>
-      window.location.host.includes('localhost')
-      || window.location.host.includes('127.0.0.1');
+    window.location.host.includes('localhost') ||
+    window.location.host.includes('127.0.0.1');
 
-  if (isDevelopment) {
+  if (isDevelopment()) {
     return devConfiguration;
-  }
-  else {
+  } else {
     return prodConfiguration;
   }
 })();
