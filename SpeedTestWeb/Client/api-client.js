@@ -1,7 +1,13 @@
+const cleanUrl = url => {
+  return url.endsWith('/') ? url.slice(0, url.length - 1) : url;
+};
+
 const getConfiguration = () => {
   var getUrl = window.location;
-  var baseUrl = getUrl.protocol + '//' + getUrl.host + '/';
-  let url = baseUrl + '/configuration.json';
+  var pathNameSplit = window.location.pathname.split('/');
+  pathNameSplit.pop();
+  var baseUrl = getUrl.protocol + '//' + getUrl.host + pathNameSplit.join('/');
+  let url = cleanUrl(baseUrl) + '/configuration.json';
   return fetch(url)
     .then(res => res.json())
     .catch(err => {
@@ -23,7 +29,7 @@ SpeedTestClient.getSpeedTests = () => {
   };
 
   const speedTestApiUrl = apiBase => {
-    const apiUrl = new URL(apiBase + '/SpeedTest');
+    const apiUrl = new URL(cleanUrl(apiBase) + '/SpeedTest');
 
     const params = apiUrl.searchParams;
     params.set('From', 0);
