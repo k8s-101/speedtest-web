@@ -1,3 +1,14 @@
+const getConfiguration = () => {
+  var getUrl = window.location;
+  var baseUrl = getUrl.protocol + '//' + getUrl.host + '/';
+  let url = baseUrl + '/configuration.json';
+  return fetch(url)
+    .then(res => res.json())
+    .catch(err => {
+      throw err;
+    });
+};
+
 var SpeedTestClient = SpeedTestClient || {};
 
 SpeedTestClient.getSpeedTests = () => {
@@ -5,14 +16,14 @@ SpeedTestClient.getSpeedTests = () => {
     const now = new Date();
     now.setDate(now.getDate() - 2);
     return now;
-  }
+  };
 
-  const asApiDateParameter = (date) => {
+  const asApiDateParameter = date => {
     return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
-  }
+  };
 
-  const speedTestApiUrl = (apiBase) => {
-    const apiUrl = new URL('/SpeedTest', apiBase);
+  const speedTestApiUrl = apiBase => {
+    const apiUrl = new URL(apiBase + '/SpeedTest');
 
     const params = apiUrl.searchParams;
     params.set('From', 0);
@@ -24,7 +35,8 @@ SpeedTestClient.getSpeedTests = () => {
     params.set('TestDateGt', asApiDateParameter(twoDaysAgo()));
 
     return apiUrl;
-  }
-
-  return d3.json(speedTestApiUrl(Configuration.speedTestApiBase));
+  };
+  return getConfiguration().then(config =>
+    d3.json(speedTestApiUrl(config.speedTestApiBase)),
+  );
 };

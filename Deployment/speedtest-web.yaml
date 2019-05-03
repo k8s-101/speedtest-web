@@ -17,6 +17,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          env: 
+            - name: SpeedTestApiBase
+              value: http://104.40.211.125
 
 ---
 
