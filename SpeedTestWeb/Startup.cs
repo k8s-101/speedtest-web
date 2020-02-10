@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 
 namespace SpeedTestWeb
 {
@@ -21,7 +22,7 @@ namespace SpeedTestWeb
             services.AddDirectoryBrowser();
         }
 
-        public void Configure(IApplicationBuilder application, IHostingEnvironment environment)
+        public void Configure(IApplicationBuilder application, IHostEnvironment environment)
         {
             if (environment.IsDevelopment())
             {
