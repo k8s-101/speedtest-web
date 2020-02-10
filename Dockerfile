@@ -6,12 +6,13 @@ RUN dotnet restore
 
 COPY /SpeedTestWeb ./
 RUN dotnet publish \
-    --output /PublishedApp \
-    --configuration Release
+    --output ./PublishedApp \
+    --configuration Release \
+    --no-restore
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 LABEL repository="github.com/k8s-101/speedtest-api"
 WORKDIR /SpeedTestWeb
 
-COPY --from=build-stage /PublishedApp .
+COPY --from=build-stage /SpeedTestWeb/PublishedApp .
 ENTRYPOINT ["dotnet", "SpeedTestWeb.dll"]

@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -43,6 +44,13 @@ namespace SpeedTestWeb
                 FileProvider = new PhysicalFileProvider(clientPath),
                 RequestPath = ""
             });
+        }
+
+        public void WriteClientConfig(string clientPath)
+        {
+            var clientConfigPath = Path.Combine(clientPath, "configuration.json");
+            var config = JsonSerializer.Serialize(new { speedTestApiBase = Configuration["SpeedTestApiBase"] });
+            File.WriteAllText(clientConfigPath, config);
         }
     }
 }

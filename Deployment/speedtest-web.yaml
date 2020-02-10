@@ -1,0 +1,36 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: speedtest-web
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: speedtest-web
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: speedtest-web
+          image: taeregistry.azurecr.io/speed-test-web:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env: 
+            - name: SpeedTestApiBase
+              value: http://13.81.246.53
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: speedtest-web-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: speedtest-web
+  ports:
+  - protocol: TCP
+    port: 80
