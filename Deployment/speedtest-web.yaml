@@ -1,8 +1,11 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: speedtest-web
 spec:
+  selector:
+    matchLabels:
+      app: speedtest-web
   replicas: 1
   template:
     metadata:
@@ -17,12 +20,11 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
-          env: 
+          env:
             - name: SpeedTestApiBase
-              value: http://13.81.246.53
+              value: http://51.124.13.155/
 
 ---
-
 kind: Service
 apiVersion: v1
 metadata:
@@ -32,5 +34,5 @@ spec:
   selector:
     app: speedtest-web
   ports:
-  - protocol: TCP
-    port: 80
+    - protocol: TCP
+      port: 80
