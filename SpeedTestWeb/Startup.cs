@@ -33,6 +33,8 @@ namespace SpeedTestWeb
             application.UseDefaultFiles();
 
             var clientPath = Path.Combine(Directory.GetCurrentDirectory(), "Client");
+            WriteClientConfig(clientPath);
+
             application.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(clientPath),

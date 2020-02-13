@@ -2,11 +2,17 @@ const cleanUrl = url => {
   return url.endsWith('/') ? url.slice(0, url.length - 1) : url;
 };
 
-const getConfiguration = () => {
+
+const getCurrentHost = () => {
   var getUrl = window.location;
   var pathNameSplit = window.location.pathname.split('/');
   pathNameSplit.pop();
   var baseUrl = getUrl.protocol + '//' + getUrl.host + pathNameSplit.join('/');
+  return baseUrl;
+}
+
+const getConfiguration = () => {
+  var baseUrl = getCurrentHost();
   let url = cleanUrl(baseUrl) + '/configuration.json';
   return fetch(url)
     .then(res => res.json())
@@ -28,8 +34,17 @@ SpeedTestClient.getSpeedTests = () => {
     return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
   };
 
+  const getApiBasePath = (apiBase) => {
+    const cleanedUrl = cleanUrl(apiBase);
+    const isHostPath = cleanedUrl.includes('://');
+    if (isHostPath) {
+      return new URL(cleanedUrl + '/SpeedTest');
+    }
+    return new URL(`${getCurrentHost()}${cleanedUrl}/SpeedTest`);
+  }
+
   const speedTestApiUrl = apiBase => {
-    const apiUrl = new URL(cleanUrl(apiBase) + '/SpeedTest');
+    const apiUrl = getApiBasePath(apiBase)
 
     const params = apiUrl.searchParams;
     params.set('From', 0);
@@ -46,3 +61,5 @@ SpeedTestClient.getSpeedTests = () => {
     d3.json(speedTestApiUrl(config.speedTestApiBase)),
   );
 };
+
+
