@@ -40,7 +40,7 @@ SpeedTestClient.getSpeedTests = () => {
     if (isHostPath) {
       return new URL(cleanedUrl + '/SpeedTest');
     }
-    return new URL(`${getCurrentHost()}${cleanedUrl}/SpeedTest`);
+    return new URL(`${getCurrentHost()}${cleanedUrl}/SpeedTest`.replace('/client', ''));
   }
 
   const speedTestApiUrl = apiBase => {
